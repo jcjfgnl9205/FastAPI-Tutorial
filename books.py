@@ -73,3 +73,14 @@ async def create_book(book_title, book_author):
     }
     
     return BOOKS['book_{id}'.format(id=current_book_id + 1)]
+
+
+@app.put("/{book_name}")
+async def update_book(book_name: str, book_title: str, book_author: str):
+    book_infomation = {
+        'title': book_title,
+        'author': book_author,
+    }
+    BOOKS[book_name] = book_infomation
+    
+    return book_infomation
