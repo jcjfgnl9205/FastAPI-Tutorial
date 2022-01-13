@@ -17,25 +17,32 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for todo in todos %}
+                {% if todo.complete == False %}
                     <tr class="pointer" >
-                        <td>1</td>
-                        <td id="td1">Take out the trash </td>
-                        <td><button type="button" class="btn btn-success">Complete</button> <button type="button" class="btn btn-danger">Delete</button> </td>
+                        <td>{{ todo.id }}</td>
+                        <td>{{ todo.title }}</td>
+                        <td>
+                            <button type="button" class="btn btn-success" onclick="window.location.href='complete/{{todo.id}}'">Complete</button>
+                            <button type="button" class="btn btn-info" onclick="window.location.href='edit-todo/{{todo.id}}'">Edit</button>
+                        </td>
                     </tr>
-                    <tr class="pointer">
-                        <td>2</td>
-                        <td>Take out the trash</td>
-                        <td><button type="button" class="btn btn-success">Complete</button> <button type="button" class="btn btn-danger">Delete</button> </td>
+                {% else %}
+
+                    <tr class="pointer alert alert-success" >
+                        <td>{{ todo.id }}</td>
+                        <td class="strike-through-td">{{ todo.title }}</td>
+                        <td>
+                            <button type="button" class="btn btn-success" onclick="window.location.href='complete/{{todo.id}}'">Undo</button>
+                            <button type="button" class="btn btn-info" onclick="window.location.href='edit-todo/{{todo.id}}'">Edit</button>
+                        </td>
                     </tr>
-                    <tr class="pointer" >
-                        <td>3</td>
-                        <td >Take out the trash </td>
-                        <td><button type="button" class="btn btn-success">Complete</button> <button type="button" class="btn btn-danger">Delete</button> </td>
-                    </tr>
+                {% endif %}
+                {% endfor %}
                 </tbody>
             </table>
 
-            <a href="#" class="btn btn-primary">Add a new Todo!</a>
+            <a href="add-todo" class="btn btn-primary">Add a new Todo!</a>
         </div>
     </div>
 </div>
